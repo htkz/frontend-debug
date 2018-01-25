@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+        <title>DataCalculator</title>
+        {% load static %}
+
+        <!-- favicon -->
+        <link rel="shortcut icon" href="{% static 'img/fav-icon/favicon.ico' %}" type="image/x-icon">
+        <link rel="icon" href="{% static 'img/fav-icon/favicon.ico' %}" type="image/x-icon">
+		<!-- JointJS -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/joint.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}"/>
+        <link rel="stylesheet" href="{% static 'css/tippy.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style-chart.css' %}">
+        <link rel="stylesheet" href="{% static 'css/nav-bar.css' %}">
+        <link rel="stylesheet" href="{% static 'css/models.css' %}">
+        <link rel="stylesheet" href="{% static 'css/simulatePlot.css' %}">
+        <!-- Google fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+        <!-- D3.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-hierarchy/1.1.5/d3-hierarchy.min.js"></script>
+
+
+        <!-- mathjs -->
+        <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/mathjs/3.16.4/math.min.js"></script> -->
+        <!-- <script src="https://wzrd.in/standalone/function-plot@1.18.1"></script> -->
+
+
+		<!-- Bootflat -->
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css"> -->
+		<!-- Fonts -->
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+
+    	<!-- Left Menu -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style-leftmenu.css' %}"/>
+
+        <!-- Bottom Menu -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style-bottommenu.css' %}"/>
+
+        <!-- Alert  -->
+        <link rel="stylesheet" href="{% static 'css/sweetalert.css' %}">
+
+        <!-- button -->
+        <link rel="stylesheet" href="{% static 'css/style-button.css' %}">
+
+        <!-- Right Menu -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style-rightmenu.css' %}"/>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/form-group.css' %}"/>
+
+    </head>
+    <body>
+        <!--left menu begins-->
+		<div id="leftSidenav" class="sidenav">
+            <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" >&times;</a> -->
+            <div class="container">
+                <div class="row clearfix">
+                    <div class="col-md-12 column">
+                        <div class="panel-group" id="panel-793435">
+                            <div class="panel panel-default panel-el" id="panel-el">
+                                <div class="panel-heading flex-row-between ">
+                                     <a class="panel-title" data-toggle="collapse" data-parent="#panel-793435" href="#panel-element-100000" id="element-collapse">Elements</a>
+                                     <i id="element-add" class="fa fa-plus-circle" aria-hidden=true onclick="addElement();"></i>
+                                </div>
+                                <div id="panel-element-100000" class="panel-collapse collapse show">
+                                    <div class="panel-body" id="panel-element-100001">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default panel-ds">
+                                <div class="panel-heading">
+                                     <a class="panel-title" data-toggle="collapse" data-parent="#panel-793435" href="#panel-element-777779" style="color: #ccc;">Data Structures</a>
+                                </div>
+                                <div id="panel-element-777779" class="panel-collapse collapse show">
+                                    <div class="panel-body" id="panel-element-777776" >
+
+                                    </div>
+                                </div>
+                                <button type="button" class="button"  onclick="simulate();" >Simulate</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="functionButtons">
+                <!-- <button type="hidden" class="button"  onclick="refreshResult();">Refresh</button> -->
+                <!-- <button type="hidden" class="button"  onclick="stopRefresh();">Stop Refresh</button> -->
+                <!-- <button type="button" class="button"  onclick="addElement();">Add Element</button> -->
+                <!-- <button type="button" class="button"  onclick="saveToJson();" >Save to Json</button> -->
+                <!-- <button type="button" class="button"  onclick="simulate();" >Simulate</button> -->
+                <button type="button" class="button"  onclick="emptyBrowser();" id="clear" >Clear</button>
+                <button type="button" class="button"  onclick="addDataStructure();" id="saveDataStructure">Save Data Structure</button>
+                <!-- <button type="button" class="button"  onclick="test();" >test</button> -->
+                <!-- <button type="button" name="button" onclick="test();">test</button> -->
+            </div>
+            <!-- A hidden input, use it's value to save properties.
+            It's not a good method to deal with data, but sorry I can't find a better way. -->
+
+            <!-- <form action="/app/savetodb/" method="post" target="hidden_iframe">
+                <input type="hidden" name="node_properties" value="" id="node-properties">
+                <input type="hidden" name="workload_properties" value="" id="workload-properties">
+                <input type="hidden" name="link_properties" value="" id="link-properties">
+                <input type="hidden" name="element_properties" value="" id="element-properties">
+                <input type="hidden" name="datastructure_properties" id="datastructure-properties">
+                {% csrf_token %}
+                <button class="button" type="submit" value="save" onclick="saveToDatabase()" id='buttondb'>Save to Database</button>
+            </form>
+            <iframe name="hidden_iframe" style="display:none;"></iframe> -->
+
+
+		</div>
+        <!--left menu ends-->
+
+		<div id="main">
+            <!-- <input id="size" type="hidden" value="{{ size }}"/>
+            <input id="keySpace" type="hidden" value="{{ keySpace }}"/> -->
+            <input id="nodes" type="hidden" value="{{ nodes }}">
+            <input id="workLoad" type="hidden" value="{{ workLoad }}">
+            <input id="links" type="hidden" value="{{ links }}">
+            <input id="json" type="hidden" value="{{ json }}">
+            <input id="elements" type="hidden" value="{{ elements }}">
+            <input id="dataStructures" type="hidden" value="{{ dataStructures }}">
+            <input id="db-manage" type="hidden" value="{{ dbManage }}">
+
+            <!--Navbar-->
+            <nav id="topBar" class="navbar navbar-toggleable-md navbar-dark navbar-dark bg-inverse" style="border-radius:0;">
+                <div class="container" style="color:white;width:100%;">
+                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded=false aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                     <!-- <a class="navbar-brand" href="#"> -->
+                        <h3 id="brand-data">DataCalculator</h3>
+                    <!-- </a> -->
+                    <div class="collapse navbar-collapse" id="navbarNav1" style="display:none;">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item" id="explore">
+                                <a class="nav-link">Explore</a>
+                            </li>
+                            <li class="nav-item selected" id="design">
+                                <a class="nav-link">Design</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link">Auto-complete</a>
+                            </li>
+                            <!-- <li class="nav-item">
+                              <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Simulate</a>
+                                <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                  <li><a href="#" onclick="showModels()">Chose Model</a></li>
+                                  <li><a href="#" onclick="showRunPic()">Run</a></li>
+                                  <li><a href="#" onclick="showRadarTree()">Auto-complete</a></li>
+                                </ul>
+                              </div>
+                            </li> -->
+                        </ul>
+                        <!-- these guys are float right  -->
+                        <!-- <form class="form-inline waves-effect waves-light">
+                            <input class="form-control" type="text" placeholder="Search">
+                        </form>
+                        <a class="navbar-brand" href="#" onclick="openNav_right()">
+                            &#9776;
+                        </a> -->
+                        <!-- <a id="navbar-brand" class="navbar-brand" style="font-size:20px;" href="#"></a> -->
+                    </div>
+                </div>
+            </nav>
+
+
+           <!-- JointJS Canvas -->
+            <div id="modelCanvas" style="height:100%;width:100%; overflow-y: auto; overflow-x: auto;"></div>
+
+            <div class="model-pannel" style="display: none;">
+                <nav class="left-nav">
+                    <ul>
+                        <li>ADAMA</li>
+                        <li>AWS-BIG</li>
+                        <li>AWS-SMALL</li>
+                        <li>LENOVO-X201</li>
+                    </ul>
+                    <a href="javscript:;" class="ok">OK</a>
+                </nav>
+                <div class="content">
+                    <h4>Spec</h4>
+                    <section class="specs">
+                        <p>
+
+                        </p>
+                    </section>
+                    <h4>Model</h4>
+                    <section class="models">
+                        <p>
+
+                        </p>
+                    </section>
+                </div>
+            </div>
+
+            <div class="radar-tree" style="display:none;">
+                <div class="tree">
+                    <!-- <p class="close" onclick="hideRadarTree();">&times;</p> -->
+                    <svg></svg>
+                </div>
+            </div>
+
+            <div class="radar-temp" hidden></div>
+
+            <div class="run-pic" style="display:none;">
+                <div class="pic">
+                    <p class="close" onclick="hideRunPic();">&times;</p>
+                    <!-- <img src="" alt=""> -->
+                </div>
+            </div>
+
+            <div class="reminder">
+                <span>scroll down</span>
+            </div>
+
+            <div id="simulatePlot" class="simulatePlot">
+                <span class="close-btn">&times;</span>
+            </div>
+
+            <nav id="bottomBar" class="navbar navbar-toggleable-md navbar-dark navbar-dark bg-inverse" style="border-radius:0;">
+                <div class="header">
+                    <span class="close-btn">&times;</span>
+                    <h3>Properties</h3>
+                </div>
+                <div class="container" style="color:white;" id="form-node">
+                    <div class="group group1">
+                        <fieldset class="form-group">
+                            <legend>General info</legend>
+                            <div style="display:none">
+                                <div>ElementId: </div>
+                                <input type="text"  name="nodeId" id="nodeId" style="color:#555;" >
+                            </div>
+                            <div class="single-property">
+                                <div>Element Name: </div>
+                                <input type="text"  name="name" id="name">
+                            </div>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <legend>External Links</legend>
+                            <div class="single-property">
+                                <div>Previous:</div>
+                                <select name="prev"  id="external_prev">
+                                    <option value=True>true</option>
+                                    <option value=False>false</option>
+                                </select>
+                            </div>
+                            <div class="single-property">
+                                <div>Next:</div>
+                                <select name="next"  id="external_next">
+                                    <option value=True>true</option>
+                                    <option value=False>false</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <legend>Addressing</legend>
+                            <div class="single-property">
+                                <div>Direct:</div>
+                                <select  name="directAddressing">
+                                    <option value=True>true</option>
+                                    <option value=False>false</option>
+                                </select>
+                            </div>
+                            <div class="single-property">
+                                <div>Head:</div>
+                                <select  name="head">
+                                    <option value=True>true</option>
+                                    <option value=False>false</option>
+                                </select>
+                            </div>
+                            <div class="single-property">
+                                <div>Tail:</div>
+                                <select  name="tail">
+                                    <option value=True>true</option>
+                                    <option value=False>false</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <legend>Data Layout</legend>
+                            <div class="single-property">
+                                <div>Links Layout:</div>
+                                <select name="linksLayout"  style="width:42%;">
+                                    <option value="consolidate">consolidate</option>
+                                    <option value="scatter">scatter</option>
+                                </select>
+                            </div>
+                            <div class="single-property">
+                                <div>Filters Layout:</div>
+                                <select name="filtersLayout"  style="width:42%;">
+                                    <option value="consolidaye">consolidaye</option>
+                                    <option value="scatter">scatter</option>
+                                </select>
+                            </div>
+                            <div class="single-property">
+                                <div>Key/Values Layout:</div>
+                                <select name="keyValueLayout"  style="width:42%;">
+                                    <option value="rowwise">rowwise</option>
+                                    <option value="columnar">columnary</option>
+                                    <option value="dump">dump</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                        <fieldset class="form-group" id="fieldset-color">
+                            <legend>Color</legend>
+                            <div class="single-property">
+                                <div>color:</div>
+                                <input type="color" name="color" value="#767676">
+                            </div>
+                        </fieldset>
+                        <fieldset class="form-group" id="fieldset-shortname">
+                            <legend>Short Name</legend>
+                            <div class="single-property">
+                                <div>short name:</div>
+                                <input type="text"  maxlength="2" name="shortName" value="IT">
+                            </div>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <legend>Sub-partitions</legend>
+                            <div class="single-property">
+                                <div>How To Access:</div>
+                                <select name="accessPartitions"  style="width:42%;">
+                                    <option value="inline">inline</option>
+                                    <option value="pointed">pointed</option>
+                                    <option value="none">none</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="group group2">
+                        <fieldset class="form-group">
+                            <legend>Partition Properties</legend>
+                            <div class="single-property">
+                                <div>Fanout:</div>
+                                <select name="fanout"  onchange="changeFanoutInput(this.value)">
+                                    <option value="fixed">fixed</option>
+                                    <option value="variable">variable</option>
+                                    <option value="function">function</option>
+                                </select>
+                            </div>
+                            <div class="single-property">
+                                <div>Fanout Fixed Value:</div>
+                                <input type="text" name="fanoutFixedValue">
+                            </div>
+                            <div style="display:none;" class="single-property">
+                                <div>Fanout Function:</div>
+                                <input type="text"  name="fanoutFunction">
+                            </div>
+                            <div class="single-property">
+                                <div>Partitioning Type:</div>
+                                <select  name="partitioning" onchange="changePartition(this.value);">
+                                    <option value="function">function</option>
+                                    <option value="none">none</option>
+                                    <option value="sorted">sorted</option>
+                                </select>
+                            </div>
+                            <div class="single-property">
+                                <div>Partitioning Function:</div>
+                                <input type="text" name="partitioningFunction">
+                            </div>
+                            <div class="single-property">
+                                <div>Log Structure - Filters Per Level:</div>
+                                <select  name="filtersPerLevel">
+                                    <option value=True>true</option>
+                                    <option value=False>false</option>
+                                </select>
+                            </div>
+                            <div class="single-property">
+                                <div>Log Structure - Filters Per Run:</div>
+                                <select  name="filtersPerRun">
+                                    <option value=True>true</option>
+                                    <option value=False>false</option>
+                                </select>
+                            </div>
+                            <div class="single-property">
+                                <div>Log Structure - Initial Run Size:</div>
+                                <input type="text"  name="initialRunSize">
+                            </div>
+                            <div class="single-property">
+                                <div>Log Structure - Max Runs Per Level:</div>
+                                <input type="text"  name="maxRunsPerLevel">
+                            </div>
+                            <div class="single-property">
+                                <div>Log Structure - Merge Factor:</div>
+                                <input type="text"  name="mergeFactor">
+                            </div>
+                            <div class="single-property">
+                                <div>Sorted:</div>
+                                <select  name="sorted">
+                                    <option value="append resort">append resort</option>
+                                    <option value="partitioning">partitioning</option>
+                                    <option value="none">none</option>
+                                    <option value="push insert" selected>push insert</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="group group3">
+                        <fieldset class="form-group">
+                            <legend>Per partition</legend>
+                            <div class="single-property">
+                                <div>Previous Links:</div>
+                                <select  name="prevLinks">
+                                    <option value=True>true</option>
+                                    <option value=False>false</option>
+                                </select>
+                            </div>
+                            <div class="single-property">
+                                <div>Next Links:</div>
+                                <select name="nextLinks">
+                                    <option value=True>true</option>
+                                    <option value=False>false</option>
+                                </select>
+                            </div>
+
+                            <div class="single-property">
+                                <div>Skip links:</div>
+                                <select  name="skiplinks">
+                                    <option value="none">none</option>
+                                    <option value="perfect">perfect</option>
+                                    <option value="randomized">randomized</option>
+                                </select>
+                            </div>
+
+                            <div class="single-property">
+                                <div>Skip Links Probability:</div>
+                                <input   type="text" name="skiplinksProbability">
+                            </div>
+                            <div class="single-property">
+                                <div>Zone-Map Max:</div>
+                                <select  name="zoneMapMax">
+                                    <option value=True>true</option>
+                                    <option value=False>false</option>
+                                </select>
+                            </div>
+
+                            <div class="single-property">
+                                <div>Zone-Map Min:</div>
+                                <select  name="zoneMapMin">
+                                    <option value=True>true</option>
+                                    <option value=False>false</option>
+                                </select>
+                            </div>
+
+                            <div class="single-property">
+                                <div>Bloom Filters:</div>
+                                <select  name="bloomFilters">
+                                    <option value=False>false</option>
+                                    <option value=True>true</option>
+                                </select>
+                            </div>
+
+                            <div class="single-property">
+                                <div>Bloom Filters - Hash Functions Number:</div>
+                                <input  type="text" name="HashFunctionsNum">
+                            </div>
+
+                            <div class="single-property">
+                                <div>Bloom Filters - Number Of Bits:</div>
+                                <input  type="text" name="NumOfBits">
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="group group4">
+                        <fieldset class="form-group">
+                            <legend>Per partition</legend>
+                            <div class="single-property">
+                                <div>Key Retention:</div>
+                                <select  name="keyRetention">
+                                    <option value="none">none</option>
+                                    <option value="full">full</option>
+                                    <option value="function">function</option>
+                                </select>
+                            </div>
+                            <div class="single-property">
+                                <div>Key Retention - Compression:</div>
+                                <select  name="keyRetentionCompression">
+                                    <option value="delta_encoding">delta_encoding</option>
+                                    <option value="gzip">gzip</option>
+                                    <option value="null_suppressing">null_suppressing</option>
+                                    <option value="uncompressed">uncompressed</option>
+                                </select>
+                            </div>
+                            <div class="single-property">
+                                <div>Key Retention - Function:</div>
+                                <input  type="text" name="keyRetentionFunction">
+                            </div>
+                            <div class="single-property">
+                                <div>Value Retention:</div>
+                                <select  name="valueRetention">
+                                    <option value="none">none</option>
+                                    <option value="full">full</option>
+                                    <option value="function">function</option>
+                                </select>
+                            </div>
+                            <div class="single-property">
+                                <div>Value Retention - Compression:</div>
+                                <select  name="valueRetentionCompression">
+                                    <option value="delta_encoding">delta_encoding</option>
+                                    <option value="gzip">gzip</option>
+                                    <option value="null_suppressing">null_suppressing</option>
+                                    <option value="uncompressed">uncompressed</option>
+                                </select>
+                            </div>
+                            <div class="single-property">
+                                <div>Value Retention - Function:</div>
+                                <input  type="text" name="valueRetentionFunction">
+                            </div>
+                            <div class="single-property">
+                                <div>Capacity:</div>
+                                <select  name="capacity" onchange="changeCapacityInput(this.value)">
+                                    <option value="fixed">fixed</option>
+                                    <option value="variable">variable</option>
+                                    <option value="balanced">balanced</option>
+                                    <option value="function">function</option>
+                                </select>
+                            </div>
+                            <div class="single-property">
+                                <div>Capacity Value:</div>
+                                <input  type="text" name="capacityValue">
+                            </div>
+                            <div class="single-property" style="display:none;">
+                                <div>Capacity Function:</div>
+                                <input  type="text" name="capacityFunction">
+                            </div>
+                            <div class="single-property">
+                                <div>Utilization Constraint:</div>
+                                <select  name="Utilization">
+                                    <option value="none">none</option>
+                                    <option value="leq_capacity">leq_capacity</option>
+                                    <option value="function">function</option>
+                                </select>
+                            </div>
+                            <div class="single-property">
+                                <div>Utilization Function:</div>
+                                <input  type="text" name="UtilizationFunction">
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </nav>
+
+		</div>
+
+        <div class="rightNav">
+            <div id="panel-element-rc" class="panel-collapse collapse show">
+                <header>Radar Chart</header>
+                <div class="radar-chart">
+
+                </div>
+            </div>
+            <div class="info">
+                <header>Instructions</header>
+                <p>Choose a data structure on the left side menu, to see its
+                    specification visually in the center of the screen. Then
+                    click on each element in the visual specification to see its
+                     complete textual specification at the bottom.
+                 </p>
+            </div>
+        </div>
+
+
+        <!-- JointJS Dependencies -->
+        <script src="{% static 'js/tippy.min.js' %}"></script>
+        <script src="{% static 'js/jointjs/jquery.js' %}"></script>
+        <script src="{% static 'js/jointjs/lodash.js' %}"></script>
+        <script src="{% static 'js/jointjs/backbone-min.js' %}"></script>
+
+
+        <script src="{% static 'js/jointjs/graphlib.core.min.js' %}"></script>
+        <script src="{% static 'js/jointjs/dagre.core.min.js' %}"></script>
+
+        <script src="{% static 'js/jointjs/joint.js' %}"></script>
+        <script src="{% static 'js/jointjs/tether.min.js' %}"></script>
+        <script src="{% static 'js/jointjs/joint.shapes.chart.min.js' %}"></script>
+
+
+        <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/codeforupdate/global.js' %}"></script>
+
+
+
+        <!-- main -->
+        <script src="{% static 'js/codeforupdate/CADnode.js' %}"></script> <!-- should be included before app.js -->
+
+        <!-- node_data -->
+        <script src="{% static 'js/codeforupdate/node_data.js' %}"></script>
+
+        <!-- leftmenu -->
+        <script src="{% static 'js/codeforupdate/leftmenu.js' %}"></script>
+
+        <!-- rightmenu -->
+        <script src="{% static 'js/codeforupdate/rightmenu.js' %}"></script>
+
+        <!-- bottommenu -->
+        <!-- <script src="{% static 'js/bottommenu.js' %}"></script> -->
+
+        <!-- alert -->
+        <script src="{% static 'js/sweetalert/sweetalert.min.js' %}"></script>
+
+        <!-- app -->
+        <script src="{% static 'js/codeforupdate/app.js' %}"></script>
+
+        <!-- module -->
+        <script src="{% static 'js/codeforupdate/dataStructure.js' %}"></script>
+
+        <!-- save to json -->
+        <script src="{% static 'js/codeforupdate/jsonTransfer.js' %}"></script>
+
+        <!-- refresh -->
+        <script src="{% static 'js/codeforupdate/refresh.js' %}"></script>
+
+        <script src="{% static 'js/codeforupdate/test.js' %}"></script>
+
+        <!-- add element type -->
+        {% csrf_token %}
+        <script src="{% static 'js/codeforupdate/element.js' %}"></script>
+
+        <!-- module -->
+        <script src="{% static 'js/codeforupdate/model.js' %}"></script>
+
+        <!-- radar chart -->
+        <script src="{% static 'js/radar-tree-chart/radarChart.js' %}"></script>
+        <script src="{% static 'js/radar-tree-chart/radarTree.js' %}"></script>
+        <script src="{% static 'js/radar-tree-chart/radarDraw.js' %}"></script>
+
+        <!-- run-pic -->
+        <script src="{% static 'js/codeforupdate/runPic.js' %}"></script>
+
+        <!-- bottom-menu -->
+        <script src="{% static 'js/codeforupdate/bottom-menu.js' %}"></script>
+
+        <!-- init -->
+        <script src="{% static 'js/codeforupdate/init.js' %}"></script>
+
+
+        <!-- plot -->
+        <script src="{% static 'js/plotly-latest.min.js' %}"></script>
+        <script src="{% static 'js/plot.js' %}"></script>
+    </body>
+</html>

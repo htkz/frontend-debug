@@ -1,0 +1,95 @@
+.dropdown-menu a:hover {
+  box-shadow: none!important;
+  color: black!important;
+  padding: 0 15px!important;
+}
+
+.dropdown-menu a {
+  color: black!important;
+  padding: 0 15px!important;
+}
+
+.dropdown-menu li {
+  cursor: pointer;
+}
+
+.dropdown-menu li:hover {
+  background-color: #ccc;
+}
+
+.navbar {
+    height: 7vh;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+
+}
+
+#topBar {
+    top: 0;
+}
+
+#bottomBar{
+    bottom: 0;
+    height: 35vh;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+#bottomBar .header {
+    color: #ddd;
+    width: 100%;
+    padding: 0 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #999;
+}
+
+#bottomBar .header span {
+    font-size: 30px;
+    float: right;
+}
+
+#bottomBar .header h3 {
+    font-size: 30px;
+    margin: 0;
+    padding: 10px 0;
+}
+
+#bottomBar .container {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+#navbarNav1 {
+    font-size: 14px;
+    text-align: center;
+    margin: auto;
+}
+#navbarNav1 p {
+    margin: auto;
+}
+
+.close-btn {
+    cursor: pointer;
+}
+.close-btn:hover {
+    color: white;
+}
+
+.reminder {
+    position: fixed;
+    right: 30px;
+    bottom: 20px;
+    border: 1px solid #ccc;
+    background-color: #999;
+    z-index: 2;
+    cursor: pointer;
+    color: #333;
+    border-radius: 4px;
+}
+.reminder:hover {
+    opacity: 0.75;
+}

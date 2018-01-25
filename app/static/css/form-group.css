@@ -1,0 +1,39 @@
+fieldset.form-group {
+    font-size: 12px;
+    color: #ccc;
+    margin: 0;
+}
+
+fieldset.form-group legend {
+    margin: 0;
+    font-size: 20px;
+    color: #eee;
+}
+
+.single-property {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.single-property div {
+    display: flex;
+    width: 120px;
+    margin-right: 10px;
+}
+
+.single-property input,
+.single-property select {
+    background: transparent;
+    color: #ccc;
+    border: 1px solid #ccc;
+}
+
+.single-property input:focus,
+.single-property select:focus {
+    outline: none;
+}
+
+.single-property input {
+    padding-left: 8px;
+}

@@ -1,0 +1,39 @@
+.button {
+    width:92%;
+    height:initial;
+    border:1px solid grey;
+    cursor:pointer;
+    background-color: transparent;
+    color: grey;
+    margin:5px 10px;
+}
+
+.button:hover {
+    background-color: #303030;
+}
+
+.button-right {
+    width:100%;
+    height:initial;
+    border:1px solid grey;
+    cursor:pointer;
+    background-color: transparent;
+    color: grey;
+    /*margin:5px 10px;*/
+    margin-bottom: 10px;
+}
+
+.button-right:hover {
+    background-color: #303030;
+}
+
+.icon-button {
+    color: #ccc;
+    padding: 4px!important;
+    margin: 0!important;
+}
+
+.icon-button:hover {
+    opacity: 0.75;
+    cursor: pointer;
+}

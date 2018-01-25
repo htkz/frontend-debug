@@ -1,0 +1,14 @@
+https://github.com/stephenmcd/django-socketio
+
+install this
+    brew install libevent
+    export CFLAGS=-I/brew/include
+
+using vertualenv to install this
+    pip install -U django-socketio
+
+change the urls.py in site-packages
+
+do not use the {% socketio %} tag, include the socket.io.js manually
+
+then run python manage.py runserver_socketio, sudo maybe

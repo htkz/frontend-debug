@@ -1,0 +1,13 @@
+#ex1Slider .slider-selection {
+	background: #BABABA;
+}
+
+.slider.slider-horizontal{
+    width: calc(100% - 400px);
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.list-group label, .list-group span{
+    width: 100px;
+}

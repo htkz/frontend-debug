@@ -1,0 +1,5 @@
+BinarySearchContiguousKeysBenchmark LinearPlusLogModel 2.01691e-13 2.48643e-08 -2.98525e-09
+PointerRandomMemoryAccessBenchmark SumSigmoidModel 5.81664e-07 14.5503 23.9366 -6.48049e-07 14.6446 3.86937 8.05476e-08
+RandomMemoryAccessBenchmark SumSigmoidModel -9.40847e-08 11.1935 0.0664866 -0.0279881 20.636 5.27755 0.0279882
+NoSimdScanEqualityContiguousKeysBenchmark SimpleLinearModel 1.13208e-08 5.15376e-08
+SequentialAccessBenchmark SumSigmoidModel -1.46488e-06 4.52989 1.83652 -2.0043 20.2137 30.7499 2.0043

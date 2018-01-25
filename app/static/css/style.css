@@ -1,0 +1,53 @@
+/* Colors: http://materializecss.com/color.html */
+html, body{
+  height:100%;
+}
+
+#modelCanvas {
+  position: relative;
+  background-color: #424242;
+  transition: all 0.5s;
+}
+
+/* port styling */
+.available-magnet {
+    fill: #03a9f4;
+  stroke: #03a9f4;
+}
+
+/* element styling */
+.available-cell rect {
+    stroke-dasharray: 5, 2;
+}
+
+.connection {
+   /* stroke: black; */
+   /* stroke width cannot be overriden by attribute? */
+   stroke-width: 5;
+   fill: none;
+   stroke-linejoin: round;
+   /*stroke: #fff;*/
+   stroke: #bbb;
+}
+
+.marker-source, .marker-target {
+/* Cannot be in CSS otherwise it could not be overruled by attributes.
+   fill: black;
+   stroke: black;
+*/
+   /* This makes the arrowheads point to the border of objects even though the transform: scale() is applied on them. */
+   vector-effect: non-scaling-stroke;
+   stroke: #bbb;
+   fill: #bbb;
+}
+
+#brand-data {
+    margin-top:5px;
+    margin-left: 130px;
+}
+
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}

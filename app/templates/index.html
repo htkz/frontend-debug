@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>The Data Calculator</title>
+    {% load static %}
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-slider.min.css' %}"/>
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/one-page-wonder.css' %}" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <header class="masthead">
+      <div class="overlay">
+        <div class="container">
+          <h1 class="display-1 text-white">The Data Calculator</h1>
+          <h2 class="display-4 text-white">Interactive Data Structure Design</h2>
+          <p style="color:rgb(255, 196, 0); font-size:150%; padding:2em 5em 0em 5em; ">
+            Explore data structure specifications, design and test new data structures, automatically generate data structures that fit a given workload.
+          </p>  
+          <p style="margin:2em">
+             <a href="/app/data_calc" class="btn btn-large btn-danger" style="padding:1em">Interactive Demo</a>
+          </p>
+          <p class="">
+              <a href="#info" class="btn btn-primary"><i class="arrow down"></i>&nbsp;More Info
+              </a>
+          </p>
+        </div>
+      </div>
+    </header>
+
+
+
+    <a name="info">
+        <div class="container">
+          <div class="row" style="padding-top:3em">
+              <div class="col-md-12 order-2">
+                  <h2 class="display-4">Describing data structures using node layouts</h2>
+              </div>
+          </div>
+          <div class="row align-items-center">
+              
+            <div class="col-md-5 order-2">
+              <div class="p-1">
+                <img class="img-fluid" src="{% static 'img/triangles.png' %}" alt="">
+              </div>
+            </div>
+            <div class="col-md-7 order-1">
+              <div class="p-5">
+                <p>
+                    The Data Calculator contains 40 primitives that represent different ways to layout data in any node of a data structure. 
+                    Combinations of such primitives are called &quot;Elements&quot;. 
+                    As data are recursively divided into blocks, defferent elements can be assigned to each block.
+                    Thus a hierarchy of elements is formed that describes complete data structures. 
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <section>
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="p-5">
+              <center><h2 class="display-4">A Vast Space of Design Opportunities</h2></center>
+              <img class="img-fluid rounded-circle" src="{% static 'img/combinations.png' %}" alt="">
+              <p>
+                  “Should data nodes be sorted?”, “Should they employ a bloom filter?”, and “How should we scan them exactly?”. The number of possible data structure designs explodes to >> 10<sup>40</sup> even if we limit the overall design to only two different kinds of nodes (e.g., as is the case for B-trees). If we allow full polymorphism, i.e., if we let every node to make its own design decisions (e.g., given its data and access patterns), then the number grows to >> 10<sup>100</sup> possible designs.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+          <div class="col-md-12 order-1">
+            <div class="p-5">
+              <center><h2 class="display-4">Cost Synthesis and Interactive Design</h2></center>
+              <img class="img-fluid" src="{% static 'img/architecture.png' %}" alt="">
+              <p>Given a specification of a data structure layout, a workload and a hardware profile, the data calculator can synthesize the design of operations and compute their costs (latency).
+                Further the data calculator can automatically create optimal designs for the given workload.
+              </p>
+              <p style="margin-top:5em; margin-bottom:0">
+                    <a href="/app/data_calc" class="btn btn-primary btn-large">Interactive Demo</a>
+                   </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </section>
+
+    
+
+   
+    <script src="{% static 'js/jointjs/jquery.js' %}"></script>
+    <script src="{% static 'js/jointjs/tether.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap-slider.min.js' %}"></script>
+    <script src="{% static 'js/app-index.js' %}"></script>
+    
+  </body>
+
+</html>

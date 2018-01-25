@@ -1,0 +1,132 @@
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+    height: 93vh;
+    width: 270px;
+    position: fixed;
+    z-index: 1;
+    /*top: 0;
+    left: 0;*/
+    background-color: #222;
+    overflow-x: hidden;
+    /*overflow-y: scroll;*/
+    /*transition: 0.5s;*/
+    /*padding-top: 60px;*/
+    margin: 7vh 0;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 20px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav p {
+    /*font-size: 10px;*/
+}
+
+.sidenav .panel-body a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 12px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    margin-left: 5px;
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+  height:100%;
+  width:100%;
+}
+
+
+
+form#workload fieldset {
+    border: 1px solid grey;
+    margin:10px 0;
+    padding:10px;
+}
+
+
+form#workload fieldset p input {
+    width: 40%;
+    height: 0px;
+    display: inline;
+    float: right;
+}
+
+
+.element-left {
+    display:inline-block!important;
+    margin:0 10px!important;
+    padding:0!important;
+}
+
+.element-right {
+    display:inline-block!important;
+    float:right;
+    margin-right: 20px;
+}
+
+.element-icon-color {
+    margin-left: 20px;
+    border-radius: 50%;
+}
+
+#element-add {
+  vertical-align: middle;
+  color: #ccc;
+  font-size: 20px;
+  padding-top:12px;
+  cursor:pointer;
+}
+
+#element-add:hover {
+  opacity: .75;
+}
+
+.flex-row-between {
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+}
+
+.not-selectable {
+    user-select: none;
+}
+
+
+.nav-item.selected a{
+    background-color: #444;
+    color: #999!important;
+}
+
+.nav-item {
+    padding: 0.5em;
+}
+
+.nav-item a {
+    padding: 0;
+}
+
+#panel-element-777776 a.selected {
+    color: #eee;
+}
